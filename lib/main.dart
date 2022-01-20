@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:async/async.dart';
+//import 'package:async/async.dart';
 
 
 const request = "https://api.hgbrasil.com/finance?key=b65dae79";
 
 void main() async {
 
-  http.Response response = await http.get(request);
-  print(response.body);
+//   http.Response response = await http.get(request);
+//   print(response.body);
 
   runApp(MaterialApp(
     home: Home(),
@@ -39,67 +39,67 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Conversor de Moeda"),
+        title: const Text("Conversor de Moeda"),
         centerTitle: true,
         backgroundColor: Colors.amber,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.refresh),
+            icon: const Icon(Icons.refresh),
             onPressed: () {},
           )
         ],
       ),
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Icon(
+              const Icon(
                 Icons.monetization_on,
                 size: 120.0,
                 color: Colors.amber,
               ),
               TextFormField(
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: "Reais",
                     labelStyle: TextStyle(color: Colors.amber)),
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.amber, fontSize: 25.0),
+                style: const TextStyle(color: Colors.amber, fontSize: 25.0),
                 controller: valueController,
                 validator: (value) {
-                  if(value.isEmpty){
+                  if(value == null || value.isEmpty){
                     return "Insira um valor.";
                   }
                 },
               ),
               TextFormField(
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: "Dólares",
                     labelStyle: TextStyle(color: Colors.amber)),
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.amber, fontSize: 25.0),
+                style: const TextStyle(color: Colors.amber, fontSize: 25.0),
                 controller: valueController,
                 validator: (value) {
-                  if(value.isEmpty){
+                  if(value == null || value.isEmpty){
                     return "Insira um valor.";
                   }
                 },
               ),
               TextFormField(
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: "Euros",
                     labelStyle: TextStyle(color: Colors.amber)),
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.amber, fontSize: 25.0),
+                style: const TextStyle(color: Colors.amber, fontSize: 25.0),
                 controller: valueController,
                 validator: (value) {
-                  if(value.isEmpty){
+                  if(value == null || value.isEmpty){
                     return "Insira um valor.";
                   }
                 },
