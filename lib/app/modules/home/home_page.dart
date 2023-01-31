@@ -68,8 +68,10 @@ class _HomePageState extends State<HomePage> {
                   double newDolarValue = double.parse(value) / store.dolarValue;
                   double newEuroValue = double.parse(value) / store.euroValue;
 
-                  store.dolarController.text = newDolarValue.toString();
-                  store.euroController.text = newEuroValue.toString();
+                  store.dolarController.text =
+                      newDolarValue.toStringAsPrecision(2);
+                  store.euroController.text =
+                      newEuroValue.toStringAsPrecision(2);
                 },
               ),
               TextFormField(
@@ -89,8 +91,10 @@ class _HomePageState extends State<HomePage> {
                   double newRealValue = double.parse(value) * store.dolarValue;
                   double newEuroValue = double.parse(value) / store.euroValue;
 
-                  store.realController.text = newRealValue.toString();
-                  store.euroController.text = newEuroValue.toString();
+                  store.realController.text =
+                      newRealValue.toStringAsPrecision(2);
+                  store.euroController.text =
+                      newEuroValue.toStringAsPrecision(2);
                 },
               ),
               TextFormField(
@@ -110,8 +114,10 @@ class _HomePageState extends State<HomePage> {
                   double newRealValue = double.parse(value) * store.euroValue;
                   double newDolarValue = double.parse(value) / store.dolarValue;
 
-                  store.realController.text = newRealValue.toString();
-                  store.dolarController.text = newDolarValue.toString();
+                  store.realController.text =
+                      newRealValue.toStringAsPrecision(2);
+                  store.dolarController.text =
+                      newDolarValue.toStringAsPrecision(2);
                 },
               ),
             ],
