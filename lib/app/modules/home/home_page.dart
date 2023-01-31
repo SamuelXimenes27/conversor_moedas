@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'home_store.dart';
@@ -17,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     store = Modular.get<HomeStore>();
+    store.makeGetRequest();
   }
 
   @override
@@ -29,7 +32,9 @@ class _HomePageState extends State<HomePage> {
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.refresh),
-            onPressed: () {},
+            onPressed: () {
+              store.resetFields();
+            },
           )
         ],
       ),
@@ -52,12 +57,19 @@ class _HomePageState extends State<HomePage> {
                     labelText: "Reais",
                     labelStyle: TextStyle(color: Colors.amber)),
                 textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.amber, fontSize: 25.0),
-                controller: store.valueController,
+                style: const TextStyle(color: Colors.white, fontSize: 25.0),
+                controller: store.realController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Insira um valor.";
                   }
+                },
+                onChanged: (value) {
+                  double newDolarValue = double.parse(value) / store.dolarValue;
+                  double newEuroValue = double.parse(value) / store.euroValue;
+
+                  store.dolarController.text = newDolarValue.toString();
+                  store.euroController.text = newEuroValue.toString();
                 },
               ),
               TextFormField(
@@ -67,11 +79,18 @@ class _HomePageState extends State<HomePage> {
                     labelStyle: TextStyle(color: Colors.amber)),
                 textAlign: TextAlign.center,
                 style: const TextStyle(color: Colors.amber, fontSize: 25.0),
-                controller: store.valueController,
+                controller: store.dolarController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Insira um valor.";
                   }
+                },
+                onChanged: (value) {
+                  double newRealValue = double.parse(value) * store.dolarValue;
+                  double newEuroValue = double.parse(value) / store.euroValue;
+
+                  store.realController.text = newRealValue.toString();
+                  store.euroController.text = newEuroValue.toString();
                 },
               ),
               TextFormField(
@@ -81,18 +100,20 @@ class _HomePageState extends State<HomePage> {
                     labelStyle: TextStyle(color: Colors.amber)),
                 textAlign: TextAlign.center,
                 style: const TextStyle(color: Colors.amber, fontSize: 25.0),
-                controller: store.valueController,
+                controller: store.euroController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Insira um valor.";
                   }
                 },
+                onChanged: (value) {
+                  double newRealValue = double.parse(value) * store.euroValue;
+                  double newDolarValue = double.parse(value) / store.dolarValue;
+
+                  store.realController.text = newRealValue.toString();
+                  store.dolarController.text = newDolarValue.toString();
+                },
               ),
-              OutlinedButton(
-                  onPressed: () {
-                    store.makeGetRequest();
-                  },
-                  child: Text('Teste')),
             ],
           ),
         ),
