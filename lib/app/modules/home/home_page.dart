@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import '../shared/widgets/appbar.dart';
 import 'home_store.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,21 +25,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Conversor de Moeda"),
-        centerTitle: true,
-        backgroundColor: Colors.amber,
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () {
-              store.resetFields();
-            },
-          )
-        ],
+      appBar: PreferredSize(
+        preferredSize: size,
+        child: CustomAppBar(
+          title: 'Conversor de Moeda',
+          upperTitle: 'Current Conversor',
+        ),
       ),
-      backgroundColor: Colors.black,
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
         child: Form(
@@ -46,24 +42,23 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              const Icon(
+              Icon(
                 Icons.monetization_on,
                 size: 120.0,
-                color: Colors.amber,
+                color: Color(0xfff6921f),
               ),
               TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                     labelText: "Reais",
-                    labelStyle: TextStyle(color: Colors.amber)),
+                    labelStyle: TextStyle(
+                      color: Color(0xff4d130a),
+                    ),
+                    hintText: '',
+                    hintStyle: TextStyle(color: Colors.black)),
                 textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.white, fontSize: 25.0),
+                style: const TextStyle(color: Color(0xffdb36), fontSize: 25.0),
                 controller: store.realController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Insira um valor.";
-                  }
-                },
                 onChanged: (value) {
                   double newDolarValue = double.parse(value) / store.dolarValue;
                   double newEuroValue = double.parse(value) / store.euroValue;
@@ -78,15 +73,10 @@ class _HomePageState extends State<HomePage> {
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                     labelText: "Dólares",
-                    labelStyle: TextStyle(color: Colors.amber)),
+                    labelStyle: TextStyle(color: Color(0xff4d130a))),
                 textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.amber, fontSize: 25.0),
+                style: const TextStyle(color: Color(0xffdb36), fontSize: 25.0),
                 controller: store.dolarController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Insira um valor.";
-                  }
-                },
                 onChanged: (value) {
                   double newRealValue = double.parse(value) * store.dolarValue;
                   double newEuroValue = double.parse(value) / store.euroValue;
@@ -101,15 +91,10 @@ class _HomePageState extends State<HomePage> {
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                     labelText: "Euros",
-                    labelStyle: TextStyle(color: Colors.amber)),
+                    labelStyle: TextStyle(color: Color(0xff4d130a))),
                 textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.amber, fontSize: 25.0),
+                style: const TextStyle(color: Color(0xffdb36), fontSize: 25.0),
                 controller: store.euroController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Insira um valor.";
-                  }
-                },
                 onChanged: (value) {
                   double newRealValue = double.parse(value) * store.euroValue;
                   double newDolarValue = double.parse(value) / store.dolarValue;
@@ -124,6 +109,23 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+      floatingActionButton: Ink(
+        width: 48.0,
+        height: 48.0,
+        decoration: ShapeDecoration(
+          color: Color(0xfff6921f),
+          shape:
+              const CircleBorder(side: BorderSide(color: Colors.transparent)),
+        ),
+        child: IconButton(
+          padding: EdgeInsets.zero,
+          splashRadius: 48.0 / 2,
+          iconSize: 48.0 / 2,
+          icon: Icon(Icons.refresh, color: Colors.white),
+          onPressed: () {},
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
