@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:conversormoedas/app/modules/shared/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../shared/widgets/appbar.dart';
@@ -47,62 +46,59 @@ class _HomePageState extends State<HomePage> {
                 size: 120.0,
                 color: Color(0xfff6921f),
               ),
-              TextFormField(
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                    labelText: "Reais",
-                    labelStyle: TextStyle(
-                      color: Color(0xff4d130a),
-                    ),
-                    hintText: '',
-                    hintStyle: TextStyle(color: Colors.black)),
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: Color(0xffdb36), fontSize: 25.0),
+              CustomTextField(
+                titleInput: 'Reais',
+                colorTitleInput: Color(0xfff74c06),
+                fontSizeTitle: 22,
                 controller: store.realController,
                 onChanged: (value) {
-                  double newDolarValue = double.parse(value) / store.dolarValue;
+                  double newDolarValue =
+                      double.parse(value!) / store.dolarValue;
                   double newEuroValue = double.parse(value) / store.euroValue;
 
+                  // store.realController.text = 'R\$ $value';
+
                   store.dolarController.text =
-                      newDolarValue.toStringAsPrecision(2);
+                      '${newDolarValue.toStringAsPrecision(2)}';
+
                   store.euroController.text =
-                      newEuroValue.toStringAsPrecision(2);
+                      '${newEuroValue.toStringAsPrecision(2)}';
                 },
               ),
-              TextFormField(
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                    labelText: "Dólares",
-                    labelStyle: TextStyle(color: Color(0xff4d130a))),
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: Color(0xffdb36), fontSize: 25.0),
+              CustomTextField(
+                titleInput: 'Dólares',
+                colorTitleInput: Color(0xfff74c06),
+                fontSizeTitle: 22,
                 controller: store.dolarController,
                 onChanged: (value) {
-                  double newRealValue = double.parse(value) * store.dolarValue;
+                  double newRealValue = double.parse(value!) * store.dolarValue;
                   double newEuroValue = double.parse(value) / store.euroValue;
 
-                  store.realController.text =
-                      newRealValue.toStringAsPrecision(2);
-                  store.euroController.text =
-                      newEuroValue.toStringAsPrecision(2);
-                },
-              ),
-              TextFormField(
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                    labelText: "Euros",
-                    labelStyle: TextStyle(color: Color(0xff4d130a))),
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: Color(0xffdb36), fontSize: 25.0),
-                controller: store.euroController,
-                onChanged: (value) {
-                  double newRealValue = double.parse(value) * store.euroValue;
-                  double newDolarValue = double.parse(value) / store.dolarValue;
+                  // store.dolarController.text = '\$ $value';
 
                   store.realController.text =
-                      newRealValue.toStringAsPrecision(2);
+                      '${newRealValue.toStringAsPrecision(2)}';
+
+                  store.euroController.text =
+                      '${newEuroValue.toStringAsPrecision(2)}';
+                },
+              ),
+              CustomTextField(
+                titleInput: 'Euros',
+                colorTitleInput: Color(0xfff74c06),
+                fontSizeTitle: 22,
+                controller: store.euroController,
+                onChanged: (value) {
+                  double newRealValue = double.parse(value!) * store.euroValue;
+                  double newDolarValue = double.parse(value) / store.dolarValue;
+
+                  // store.euroController.text = '€ $value';
+
+                  store.realController.text =
+                      '${newRealValue.toStringAsPrecision(2)}';
+
                   store.dolarController.text =
-                      newDolarValue.toStringAsPrecision(2);
+                      '${newDolarValue.toStringAsPrecision(2)}';
                 },
               ),
             ],
@@ -122,7 +118,9 @@ class _HomePageState extends State<HomePage> {
           splashRadius: 48.0 / 2,
           iconSize: 48.0 / 2,
           icon: Icon(Icons.refresh, color: Colors.white),
-          onPressed: () {},
+          onPressed: () {
+            store.resetFields();
+          },
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
