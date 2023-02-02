@@ -1,16 +1,17 @@
-# conversormoedas
+# Currency Converter
 
-A new Flutter application.
+A Flutter app to convert money (EUR, DLR and BRL) using API from HGBrasil.
 
-## Getting Started
+## A simple demonstration
 
-This project is a starting point for a Flutter application.
+  ![Alt Text](https://media.giphy.com/media/4WVLMyGSxW0HzFdo19/giphy.gif)
+  
+## Inputs
 
-A few resources to get you started if this is your first Flutter project:
+<p>R$ Reais - Real</p>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+<p>$ Dolares - Dolar</p>
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<p>€ Euros - Euro</p>
+
+
