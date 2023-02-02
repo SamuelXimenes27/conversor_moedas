@@ -59,10 +59,10 @@ class _HomePageState extends State<HomePage> {
                   // store.realController.text = 'R\$ $value';
 
                   store.dolarController.text =
-                      '${newDolarValue.toStringAsPrecision(2)}';
+                      '${newDolarValue.toStringAsPrecision(3)}';
 
                   store.euroController.text =
-                      '${newEuroValue.toStringAsPrecision(2)}';
+                      '${newEuroValue.toStringAsPrecision(3)}';
                 },
               ),
               CustomTextField(
@@ -77,10 +77,10 @@ class _HomePageState extends State<HomePage> {
                   // store.dolarController.text = '\$ $value';
 
                   store.realController.text =
-                      '${newRealValue.toStringAsPrecision(2)}';
+                      '${newRealValue.toStringAsPrecision(3)}';
 
                   store.euroController.text =
-                      '${newEuroValue.toStringAsPrecision(2)}';
+                      '${newEuroValue.toStringAsPrecision(3)}';
                 },
               ),
               CustomTextField(
@@ -95,10 +95,10 @@ class _HomePageState extends State<HomePage> {
                   // store.euroController.text = '€ $value';
 
                   store.realController.text =
-                      '${newRealValue.toStringAsPrecision(2)}';
+                      '${newRealValue.toStringAsPrecision(3)}';
 
                   store.dolarController.text =
-                      '${newDolarValue.toStringAsPrecision(2)}';
+                      '${newDolarValue.toStringAsPrecision(3)}';
                 },
               ),
             ],
