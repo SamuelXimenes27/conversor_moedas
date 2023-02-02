@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         preferredSize: size,
         child: CustomAppBar(
           title: 'Conversor de Moeda',
-          upperTitle: 'Current Conversor',
+          upperTitle: 'Currency Converter',
         ),
       ),
       body: SingleChildScrollView(
