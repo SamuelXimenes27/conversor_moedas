@@ -52,4 +52,11 @@ abstract class HomeStoreBase with Store {
     infoText = "Informe um valor";
     formKey = GlobalKey<FormState>();
   }
+
+  @action
+  void clearInputs() {
+    realController.clear();
+    euroController.clear();
+    dolarController.clear();
+  }
 }

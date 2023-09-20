@@ -65,7 +65,7 @@ class CustomTextField extends StatelessWidget {
                 ),
                 filled: true,
                 hintStyle: TextStyle(color: Colors.grey[800]),
-                hintText: "Digite um valor",
+                hintText: "Type a value",
                 fillColor: Colors.white70),
           ),
         ),

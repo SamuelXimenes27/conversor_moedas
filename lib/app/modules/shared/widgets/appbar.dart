@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
-  final String title;
   final String upperTitle;
-  const CustomAppBar({required this.title, required this.upperTitle, Key? key})
-      : super(key: key);
+  const CustomAppBar({required this.upperTitle, Key? key}) : super(key: key);
   final primaryColor = const Color(0xff4338CA);
   final secondaryColor = const Color(0xff6D28D9);
   final accentColor = const Color(0xffffffff);
@@ -37,7 +35,7 @@ class CustomAppBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title,
+                Text('Your App For',
                     style: const TextStyle(
                         color: Colors.white70,
                         fontSize: 14,

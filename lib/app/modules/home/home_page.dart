@@ -27,10 +27,11 @@ class _HomePageState extends State<HomePage> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: PreferredSize(
         preferredSize: size,
         child: CustomAppBar(
-          title: 'Conversor de Moeda',
+          // title: 'Conversor de Moeda',
           upperTitle: 'Currency Converter',
         ),
       ),
@@ -47,58 +48,67 @@ class _HomePageState extends State<HomePage> {
                 color: Color(0xfff6921f),
               ),
               CustomTextField(
-                titleInput: 'Reais',
+                titleInput: 'Real',
                 colorTitleInput: Color(0xfff74c06),
                 fontSizeTitle: 22,
                 controller: store.realController,
                 onChanged: (value) {
-                  double newDolarValue =
-                      double.parse(value!) / store.dolarValue;
-                  double newEuroValue = double.parse(value) / store.euroValue;
+                  if (value != '') {
+                    double newDolarValue =
+                        double.parse(value!) / store.dolarValue;
+                    double newEuroValue = double.parse(value) / store.euroValue;
 
-                  // store.realController.text = 'R\$ $value';
+                    store.dolarController.text =
+                        '${newDolarValue.toStringAsPrecision(3)}';
 
-                  store.dolarController.text =
-                      '${newDolarValue.toStringAsPrecision(3)}';
-
-                  store.euroController.text =
-                      '${newEuroValue.toStringAsPrecision(3)}';
+                    store.euroController.text =
+                        '${newEuroValue.toStringAsPrecision(3)}';
+                  } else {
+                    store.clearInputs();
+                  }
                 },
               ),
               CustomTextField(
-                titleInput: 'Dólares',
+                titleInput: 'Dolar',
                 colorTitleInput: Color(0xfff74c06),
                 fontSizeTitle: 22,
                 controller: store.dolarController,
                 onChanged: (value) {
-                  double newRealValue = double.parse(value!) * store.dolarValue;
-                  double newEuroValue = double.parse(value) / store.euroValue;
+                  if (value != '') {
+                    double newRealValue =
+                        double.parse(value!) * store.dolarValue;
+                    double newEuroValue = double.parse(value) / store.euroValue;
 
-                  // store.dolarController.text = '\$ $value';
+                    store.realController.text =
+                        '${newRealValue.toStringAsPrecision(3)}';
 
-                  store.realController.text =
-                      '${newRealValue.toStringAsPrecision(3)}';
-
-                  store.euroController.text =
-                      '${newEuroValue.toStringAsPrecision(3)}';
+                    store.euroController.text =
+                        '${newEuroValue.toStringAsPrecision(3)}';
+                  } else {
+                    store.clearInputs();
+                  }
                 },
               ),
               CustomTextField(
-                titleInput: 'Euros',
+                titleInput: 'Euro',
                 colorTitleInput: Color(0xfff74c06),
                 fontSizeTitle: 22,
                 controller: store.euroController,
                 onChanged: (value) {
-                  double newRealValue = double.parse(value!) * store.euroValue;
-                  double newDolarValue = double.parse(value) / store.dolarValue;
+                  if (value != '') {
+                    double newRealValue =
+                        double.parse(value!) * store.euroValue;
+                    double newDolarValue =
+                        double.parse(value) / store.dolarValue;
 
-                  // store.euroController.text = '€ $value';
+                    store.realController.text =
+                        '${newRealValue.toStringAsPrecision(3)}';
 
-                  store.realController.text =
-                      '${newRealValue.toStringAsPrecision(3)}';
-
-                  store.dolarController.text =
-                      '${newDolarValue.toStringAsPrecision(3)}';
+                    store.dolarController.text =
+                        '${newDolarValue.toStringAsPrecision(3)}';
+                  } else {
+                    store.clearInputs();
+                  }
                 },
               ),
             ],
